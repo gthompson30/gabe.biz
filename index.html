@@ -1,5 +1,45 @@
 <!doctype html>
 <html>
+
+<head>
+<style>
+:root {
+  --width: 180px;
+  --height: 110px;
+  --x-speed: 13s;
+  --y-speed: 7s;
+  --transition-speed: 2.2s;
+}
+
+.el { 
+  width: var(--width);
+  height: var(--height);
+  background-color: yellow;
+  border: 5px solid red;
+}
+
+.x {
+  animation: x var(--x-speed) linear infinite alternate;
+  top: 0; left: 0;
+  position: absolute;
+}
+.y {
+  animation: y var(--y-speed) linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX(calc(100vw - var(--width)));
+  }
+}
+@keyframes y {
+  100% {
+    transform: translateY(calc(100vh - var(--height)));
+  }
+}
+</style>
+</head>
+
 <body>
   <h1>welcome to the biz</h1>
   <p>i'm gabriel thompson, and this is my website</p>
@@ -20,5 +60,14 @@
   
   <p><i>you can contact me at:</i></p>
   <p>email: gthompson30@stuy.edu</p>
+
+  <div class="el-wrap x">
+    <div class="el y">
+      <center>
+        <p><b>Gabriel Thompson Personal Website</b></p>
+        <p>...under construction...</p>
+      </center>
+    </div>
+  </div>
 </body>
 </html>
