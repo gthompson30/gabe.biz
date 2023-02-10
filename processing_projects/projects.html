@@ -1,106 +1,15 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<h1>Examples of Things I've Done in p5.js</h1>
+
+<p><i>(For Avery Brooks, et al.)</i></p>
 
 <!-- StuyHacks snake -->
-<iframe src="https://openprocessing.org/sketch/1406810/embed/" width="400" height="400"></iframe>
+<p><span style="font-size: 30px">Interactive snake</span> (created for StuyHacks website (my school's hack-a-thon) (<a href="https://openprocessing.org/sketch/1406810">Link to project</a>)</p>
+
+<iframe src="https://openprocessing.org/sketch/1406810/embed/" width="800" hezight="800"></iframe>
 
 <!--  -->
+<p><span style="font-size: 30px">Mandelbrot Set Generator</span> (This specifically zooms on a Julia Set found within the larger Mandelbrot Set) (<a href="https://openprocessing.org/sketch/1831323">Link to project</a>)</p>
 
-// noprotect
-
-const MAX_ITER = 1500;
-const SIZE = 600;
-
-// Home view
-// const MIN_X = -2;
-// const MAX_X = 2;
-// const MIN_Y = -2;
-// const MAX_Y = 2;
-
-// Minibrot
-// const MIN_X = -1.473152013;
-// const MAX_X = -1.473149813;
-// const MIN_Y = -0.005804675;
-// const MAX_Y = -0.005806875;
-
-// Julia Set
-const MAX_Y = -0.001739353;
-const MIN_Y = -0.001738467;
-const MAX_X = -1.768778363;
-const MIN_X = -1.768779249;
-
-function setup() {
-	createCanvas(600, 600);
-	background(100);
-	main();
-	
-	console.log(inSet(0.5, 0.5));
-}
-
-class rgb {
-	constructor() {
-		this.r = 0;
-		this.g = 0;
-		this.b = 0;
-	}
-};
-
-function iterToRGB(iter) {
-	var color = new rgb();
-	iter += 170;
-	var degrees = iter * 3.1415926535897/180.0;
-	color.r = (int) ((1 + Math.cos(degrees)) * 127.5);
-	color.g = (int) ((1 + Math.sin(degrees)) * 127.5);
-	color.b = (int) ((1 - Math.cos(degrees)) * 127.5);
-	return color;
-}
-
-function inSet(a, b) {
-	var cA = a;
-	var cB = b;
-	var temp;
-	var iter = 0;
-
-	while (a*a + b*b <= 4) {
-		if (iter >= MAX_ITER) {
-			return -1;
-		}
-		temp = a;
-		a = a*a - b*b + cA;
-		b = 2*temp*b + cB;
-		iter++;
-	}
-
-	return iter;
-}
-
-function main() {
-	var y = MAX_Y;
-	var x = MIN_X;
-	var yJump = (MAX_Y - MIN_Y) / SIZE;
-	var xJump = (MAX_X - MIN_X) / SIZE;
-	var xVal = 0;
-	var yVal = 0;
-	
-	strokeWeight(2);
-
-	for (var k = 0; k < SIZE; k++) {
-		for (var j = 0; j < SIZE; j++) {
-			x += xJump;
-			var iter = inSet(x, y);
-			console.log(x + " " + y + " " + iter);
-			var pointRGB = iterToRGB(iter);
-			
-			if (iter == -1) {
-				stroke(0, 0, 0);
-			} else {
-				stroke(pointRGB.r, pointRGB.g, pointRGB.b);
-			}
-			point(xVal, yVal);
-			xVal++;
-		}
-		xVal = 0;
-		yVal++;
-		x = MIN_X;
-		y -= yJump;
-	}
-}
+<iframe src="https://openprocessing.org/sketch/1831323/embed/" width="800" height="800"></iframe>
